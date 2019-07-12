@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/login.js"></script>
+  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+    /jquery-1.4.min.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery-3.4.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>历史记录</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script src="./layui/layui.js"></script>
+    <script>
+      window.onload=function(){
+        document.getElementById('username').innerHTML = '<img src="http://t.cn/RCzsdCq" class="layui-nav-img">' + window.sessionStorage.getItem('username');
+      }
+    </script>
+    <script type="text/javascript">
+    </script>
+   <style type="text/css">
+    /*定义图像以及大小*/
+ div#div1{  position:fixed;
+   top:0;
+   left:0;
+   bottom:0;
+   right:0;
+   z-index:-1;
+
+
+ }
+  div#div1 > img {  height:100%;
+    width:100%;
+    border:0;
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(5px);
+
+  }
+
+.content{
+  font-size: 20px;
+  position: center;
+  text-align:center;
+}
+
+
+
+
+  </style>
+</head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header" style="background-color: rgb(0,87,70)">
+    <div class="layui-logo"><a style="color: white">车辆识别系统</a></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item">
+        <a>快捷入口</a>
+        <di class="layui-nav-child">
+          <dd><a href="CarBoard.html">车牌识别</a></dd>
+          <dd><a href="CarInfo.html">车型识别</a></dd>
+          <dd><a href="CarType.html">车辆检测</a></dd>
+          <dd><a href="CarAttribute.html">属性检测</a></dd>
+          <dd><a href="javascript:;">违规检测</a></dd>
+          <dd><a href="API.html">接口文档</a></dd>
+        </di>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;" id="username">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          **
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="per_info.html">个人资料</a></dd>
+          <dd><a href="javascript:;">历史记录</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a onclick="
+          layer.confirm('真的要离开吗？', {icon: 3, title:'且慢'}, function(index){
+          //do something
+          window.sessionStorage.clear();
+          window.location.href = 'login.html';
+          });">退出</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 100px;">
+      <fieldset style="margin-top: -50px" class="layui-elem-field layui-field-title">
+        <legend>图片识别记录</legend>
+      </fieldset>
+      <table class="layui-hide" id="test" lay-filter="test"></table>
+    </div>
+  </div>
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © 深度学习不够深 - 嘀嘀嘀
+  </div>
+</div>
+
+
+
+
+<script>
+ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
+    var table = layui.table;
+    table.render({
+    elem: '#test'
+    ,height: 420
+    ,url: 'http://42.159.89.231:8000/record'//'http://42.159.89.231:8000/Record' //数据接口
+      ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+      ,where: {username: window.sessionStorage.getItem('username'), session: window.sessionStorage.getItem('session')}
+    ,parseData: function(res){ //res 即为原始返回的数据
+    /*return {
+      "code": res.status, //解析接口状态
+      "msg": res.message, //解析提示文本
+      "count": res.total, //解析数据长度
+      "data": res.data.item //解析数据列表
+    };*/
+  }
+    ,title: '用户表'
+    ,page: true //开启分页
+    ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+    ,totalRow: true //开启合计行
+    ,cols: [[ //表头
+      {field: 'username', title: '用户名', totalRowText: '合计：'}
+      ,{field: 'time', title: '时间',  sort: true, totalRow: true}
+      ,{field: 'msg', title: '结果' }
+      ,{field: 'url', title: '图片'}
+    ]]
+  });
+   //监听行单击事件（单击事件为：rowDouble）
+   table.on('row(test)', function(obj){
+     var data = obj.data;
+     var src = 'http://42.159.89.231/' + data.url;
+     layer.msg("<img style='width: 200px; height: 200px' src=" + src + ">", {
+       time: 10000, //20s后自动关闭
+       btn: ['还不错']
+     });
+     console.log(src);
+     //标注选中样式
+     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+   });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+    "name": "ResNet152-AutoAugment",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "ResNet152",
+        "args": {
+            "use_pretrained": true,
+            "num_classes": 196
+        }
+    },
+    "data_processing": {
+        "type": "CarsDataLoader",
+        "args":{
+            "mode": "test",
+            "data_dir": "data_processing/datasets/testing/extracted/",
+            "metas": "data_processing/datasets/cars_metas/cars_test_annos_withlabels.mat",
+            "resize_width": 299,
+            "resize_height": 299,
+            "batch_size": 4,
+            "shuffle": false,
+            "validation_split": 0.0,
+            "num_workers": 1,
+            "limit": null
+        }
+    },
+    "metrics": [
+        "accuracy", "top_k_accuracy", "f1"
+    ],
+    "log_dir": "saved/"
+}

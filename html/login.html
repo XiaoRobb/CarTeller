@@ -1,0 +1,411 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>登陆界面</title>
+
+  <script src="js/login.js"></script>
+  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+  <script src="layui/layui.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="//layui/css/layui.css" media="all">
+  <script type="text/javascript" src="js/vendor/jquery-3.4.1.min.js"></script>
+  <style type="text/css">
+    div#div1 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: -1;
+    }
+
+    div#div1 > img {
+      height: 100%;
+      width: 100%;
+      border: 0;
+    }
+
+    .content {
+      font-family: 宋体;
+
+      font-size: 150px;
+      position: absolute;
+      left: 5%;
+      bottom: 8%;
+      height: 300px;
+      width: 100%;
+      color: rgba(255, 255, 255, 0.25);
+      text-shadow: 0 0 10px rgba(233, 234, 229, 0.4),
+      -10px 40px 100px rgba(7, 46, 18, 0.71)
+
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #wrap {
+      height: 719px;
+      width: 100%;
+
+      background-position: center center;
+
+      position: absolute;
+      right: -10%
+
+    }
+
+    #foot {
+      width: 100%;
+      height: 0%;
+
+      position: absolute;
+      bottom: 10%;
+    }
+
+
+    #wrap .logGet {
+      height: 408px;
+      width: 368px;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.36);
+      top: 20%;
+      right: 15%;
+    }
+
+    .logC a button {
+      width: 49%;
+      height: 45px;
+      background-color: rgba(74, 86, 40, 0.74);
+      border: none;
+      color: white;
+      font-size: 18px;
+    }
+
+    .logC a:hover button {
+      width: 49%;
+      height: 45px;
+      background-color: rgba(19, 75, 30, 0.73);
+      border: none;
+      color: #fffefa;
+      font-size: 18px;
+    }
+
+
+    .logGet .logD.logDtip .p1 {
+      font-family: 幼圆;
+      display: inline-block;
+      color: white;
+      font-size: 28px;
+      margin-top: 30px;
+      width: 86%;
+    }
+
+    #wrap .logGet .logD.logDtip {
+      width: 86%;
+      border-bottom: 1px solid #00e074;
+      margin-bottom: 60px;
+      margin-top: 0px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .logGet .lgD img {
+      position: absolute;
+      top: 12px;
+      left: 8px;
+    }
+
+    .logGet .lgD input {
+      width: 100%;
+      height: 42px;
+      border: 0px;
+      text-indent: 2.5rem;
+    }
+
+    .logGet .lgD input:focus {
+
+      border: 0.5px solid #00e9e6;
+      text-indent: 2.5rem;
+      transition: border linear .2s, box-shadow linear .2s;
+      -moz-transition: border linear .2s, -moz-box-shadow linear .2s;
+      -webkit-transition: border linear .2s, -webkit-box-shadow linear .2s;
+      outline: none;
+      border-color: rgba(173, 173, 173, 75);
+      box-shadow: 0 0 8px rgba(173, 173, 173, .5);
+      -moz-box-shadow: 0 0 8px rgba(173, 173, 173, .5);
+      -webkit-box-shadow: 0 0 8px rgba(173, 173, 173, 3);
+    }
+
+
+    #wrap .logGet .lgD {
+      width: 86%;
+      position: relative;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+
+    #wrap .logGet .logC {
+      width: 86%;
+      margin-top: 0px;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-left: auto;
+      position: absolute;
+      bottom: 20%;
+      left: 7%;
+    }
+
+    .copyright {
+      font-family: "宋体";
+      color: #FFFFFF;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* 使用css3的transform来实现 */
+      height: 60px;
+      width: 40%;
+      text-align: center;
+    }
+
+
+    #foot .copyright .img {
+      width: 100%;
+      height: 24px;
+      position: relative;
+    }
+
+    .copyright .img .icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-left: 22px;
+      vertical-align: middle;
+
+
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .copyright .img .icon1 {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-left: 22px;
+      vertical-align: middle;
+
+
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .copyright .img .icon2 {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-left: 22px;
+      vertical-align: middle;
+
+
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    #foot .copyright p {
+      height: 24px;
+      width: 100%;
+    }
+
+  </style>
+  <script>
+
+  </script>
+
+</head>
+
+<body class="layui-layout-body">
+<div id="div1" class="play">
+  <img src="./img/login2.jpg">
+  <div class="content"> 车 辆 识 别</div>
+</div>
+
+<div class="wrap" id="wrap">
+
+  <div class="logGet">
+    <!-- 头部提示信息 -->
+    <div class="logD logDtip">
+      <p class="p1">登录</p>
+    </div>
+    <!-- 输入框 -->
+    <div class="lgD">
+
+      <input type="text" name="username" id="username" onfocus="if (value =='Your name'){value =''}"
+             onblur="if (value ==''){value='Your name'}"
+             placeholder="输入用户名"/>
+    </div>
+
+    <div class="lgD">
+      <input type="password" name="password" id="password" class="txt_input"
+             onfocus="if (value =='******'){value =''}" onblur="if (value ==''){value='******'}"
+             placeholder="输入用户密码"/>
+    </div>
+
+    <div class="logC">
+      <a id="login_btn">
+        <button id="loginbtn" onclick="login()">登 录</button>
+      </a>
+      <a id="register_btn">
+        <button onclick="register()">注 册
+        </button>
+      </a>
+    </div>
+    <div style="margin-top: 100px" class="layui-form-item">
+      <label class="layui-form-label" style="width: 86%">滑动验证</label>
+      <div class="layui-input-block">
+        <div id="slider"></div>
+      </div>
+    </div>
+    <!--layer.prompt({anim: 4, formType: 0, title: '请输入邮箱'},
+            function(value, index, elem){
+            layer.close(index);
+            layer.prompt({anim: 4, formType: 1, title: '请输入验证码', })
+            });
+    -->
+  </div>
+</div>
+
+<div class="footer" id="foot">
+  <div class="copyright">
+    <p>Copyright © 深度学习不够深 All Rights Reserved.</p>
+    <div class="img">
+      <span>联系邮箱：1433119499@qq.com </span>
+    </div>
+
+    <div class="img">
+      <span>联系地址：国际软件学院实验室A3-2</span>
+    </div>
+
+    <div class="img">
+      <span>联系电话：110</span>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<script>
+  var slider1;
+  layui.config({
+    base: 'layui_exts/'
+  }).extend({
+    sliderVerify:'sliderVerify/sliderVerify'
+  }).use(['sliderVerify', 'jquery', 'form'], function() {
+    var sliderVerify = layui.sliderVerify,
+      form = layui.form;
+    var slider = sliderVerify.render({
+      elem: '#slider',
+      onOk: function(){//当验证通过回调
+        layer.msg("滑块验证通过", {
+            time: 700 //2秒关闭（如果不配置，默认是3秒）
+        });
+      }
+    });
+    slider1 = slider;
+  });
+  function login() {
+    var data = {};
+    data['username'] = $('#username').val();
+    data['password'] = $('#password').val();
+    if(slider1.isOk()){
+      $.ajax({
+        type: "POST",
+        url: "http://42.159.89.231:8000/login",
+        async: false,//同步：意思是当有返回值以后才会进行后面的js程序。
+        data: data,
+        datype: 'jsonp',
+        success: function (response) {
+          if (response.username == -1) {
+            layer.msg(response.msg, {icon: 2});
+          } else {
+            layer.msg(response.msg, {icon: 1});
+            //成功读取到数据之后放入session中用于判断
+            window.sessionStorage.setItem('username', response.username);
+            window.sessionStorage.setItem('session', response.session);
+            //界面跳转
+            if (window.sessionStorage.getItem('lastUPL') == null) {
+              window.location.href = 'per_info.html';
+            }
+            else {
+              window.location.href = window.sessionStorage.getItem('lastURL');
+            }
+          }
+
+        },
+        error: function (e) {
+          layer.msg("服务器好像挂了呢555", {icon: 5});
+          layer.closeAll('loading');
+        }
+      });
+    }else{
+      layer.msg("请先通过滑块验证");
+    }
+    return false;
+
+  }
+
+  function register() {
+    var data = {}
+    data['username'] = $('#username').val()
+    data['password'] = $('#password').val()
+
+    $.ajax({
+      type: "POST",
+      url: "http://42.159.89.231:8000/register",
+      async: false,//同步：意思是当有返回值以后才会进行后面的js程序。
+      data: data,
+      datype: 'jsonp',
+      success: function (response) {
+
+        if (response.username == -1) {
+          layer.msg(response.msg, {icon: 2});
+
+        } else {
+          //layer.msg(response.msg, {icon: 1});
+          layer.tips("注册成功,点击这里登录", '#login_btn', {
+            tips: 4
+          });
+
+
+        }
+      }
+      ,
+      error: function (e) {
+        //window.alert("服务器好像挂了呢555" + e.toString())
+        layer.msg("服务器好像挂了呢555", {icon: 5});
+      }
+
+    });
+
+  }
+
+
+  layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function () {
+
+
+  });
+</script>
+<script>
+
+
+</script>
+
+</body>
+</html>

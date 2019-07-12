@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="js/login.js"></script>
+  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+    /jquery-1.4.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery-3.4.1.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>个人资料</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <script src="./layui/layui.js"></script>
+  <script>
+      window.onload=function(){
+        var username = window.sessionStorage.getItem('username');
+        var session = window.sessionStorage.getItem('session');
+        var data = {};
+        data['username'] = username;
+        data['session'] = session;
+        $.ajax({
+          type: "POST",
+          url: "http://42.159.89.231:8000/getInfo",
+          async: false,//同步：意思是当有返回值以后才会进行后面的js程序。
+          data: data,
+          datype: 'jsonp',
+          success: function (response) {
+            document.getElementById('psw').innerHTML = '密码:'+response.password;
+            document.getElementById('key_token').innerHTML ='key_token:'+ response.key_token;
+            document.getElementById('username').innerHTML = '<img src="http://t.cn/RCzsdCq" class="layui-nav-img">' + username;
+            document.getElementById('usr').innerHTML = '用户名：' + username
+          }
+          ,
+          error: function (e) {
+            layer.msg("服务器好像挂了呢555", {icon: 5});
+          }
+        });
+
+      }
+
+
+  </script>
+  <script type="text/javascript">
+  </script>
+  <style type="text/css">
+    /*定义图像以及大小*/
+    div#div1{  position:fixed;
+      top:0;
+      left:0;
+      bottom:0;
+      right:0;
+      z-index:-1;
+    }
+    div#div1 > img {  height:100%;
+      width:100%;
+      border:0;
+      -webkit-filter: blur(15px);
+      -moz-filter: blur(15px);
+      -o-filter: blur(15px);
+      -ms-filter: blur(15px);
+      filter: blur(5px);
+    }
+    .content{
+      font-size: 20px;
+      position: center;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<!--进入之后第一个出现的界面！！！-->
+
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header" style="background-color: rgb(0,87,70)">
+    <div class="layui-logo"><a style="color: white">车辆识别系统</a></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item">
+        <a>快捷入口</a>
+        <di class="layui-nav-child">
+          <dd><a href="CarBoard.html">车牌识别</a></dd>
+          <dd><a href="CarInfo.html">车型识别</a></dd>
+          <dd><a href="CarType.html">车辆检测</a></dd>
+          <dd><a href="CarAttribute.html">属性检测</a></dd>
+          <dd><a href="javascript:;">违规检测</a></dd>
+          <dd><a href="API.html">接口文档</a></dd>
+        </di>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;" id="username">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          **
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;">个人资料</a></dd>
+          <dd><a href="history.html">历史记录</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a onclick="
+          layer.confirm('真的要离开吗？', {icon: 3, title:'且慢'}, function(index){
+          //do something
+          window.sessionStorage.clear();
+          window.location.href = 'login.html';
+          });">退出</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-body" style="background-color: rgb(244,245,247)">
+    <!-- 内容主体区域 -->
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md6 layui-col-md-offset3">
+        <fieldset class="layui-elem-field layui-field-title">
+          <legend>账户信息</legend>
+        </fieldset>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+          <p id="usr">用户名：***</p>
+          <br/><br/><br/><p id="psw">密码：********</p>
+          <br/><br/><br/><p id="key_token">key_token：********</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © 深度学习不够深 - 嘀嘀嘀
+  </div>
+</div>
+
+
+
+
+<script>
+
+  layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
+    var table = layui.table;
+
+  });
+</script>
+</body>
+</html>

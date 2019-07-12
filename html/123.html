@@ -1,0 +1,170 @@
+<html>
+
+<!--
+
+http://www.mimvp.com
+
+    2015-05-10
+-->
+
+<head>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    #content {
+      width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    #content h1 {color: #0088bb;}
+
+    #content .item {
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px dotted #0088bb;
+    }
+
+    #content .item h2 {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 2px solid #0088bb;
+      margin-bottom: 10px;
+    }
+
+    #content .item li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    #content .item li a img {
+      width: 230px;
+      height: 230px;
+      border: none;
+    }
+
+    #menu{
+      position:fixed;
+      left:50%;
+      margin-left:400px;
+      top:100px;
+    }
+
+    #menu ul li a {
+      display: block;
+      margin: 5px 0;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      width: 80px;
+      height: 50px;
+      line-height: 50px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    #menu ul li a:hover, #menu ul li a.current {
+      color: #fff;
+      background: #0088bb;
+    }　
+  </style>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $(window).scroll(function(){
+        var scrollTop = $(document).scrollTop();
+        var contentItems = $("#content").find(".item");
+        var currentItem = "";
+        contentItems.each(function(){
+          var contentItem = $(this);
+          var offsetTop = contentItem.offset().top;
+
+          // 此处的200视具体情况自行设定，因为如果不减去一个数值，在刚好滚动到一个div的边缘时，菜单的选中状态会出错
+          // 比如，页面刚好滚动到第一个div的底部的时候，页面已经显示出第二个div，而菜单中还是第一个选项处于选中状态
+          if(scrollTop > offsetTop-200){
+            currentItem = "#" + contentItem.attr("id");
+          }
+        });
+        var currItem_href = currentItem;
+        var current_href = $("#menu").find(".current").attr("href");
+        if(currItem_href != current_href){
+          $("#menu").find(".current").removeClass("current");
+          $("#menu").find("[href=" + currentItem + "]").addClass("current");
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+<div id="menu">
+  <ul>
+    <li><a href="#item1" class="current">1F 男装</a></li>
+    <li><a href="#item2">2F 女装</a></li>
+    <li><a href="#item3">3F 美妆</a></li>
+    <li><a href="#item4">4F 数码</a></li>
+    <li><a href="#item5">5F 母婴</a></li>
+  </ul>
+</div>
+<div id="content">
+  <h1>网购</h1>
+  <div id="item1" class="item">
+    <h2>1F 男装</h2>
+    <ul>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <!-- 若干个li -->
+    </ul>
+  </div>
+  <!-- 若干个item-->
+  <div id="item2" class="item">
+    <h2>2F 女装</h2>
+    <ul>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <!-- 若干个li -->
+    </ul>
+  </div>
+  <div id="item3" class="item">
+    <h2>3F 美妆</h2>
+    <ul>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <!-- 若干个li -->
+    </ul>
+  </div>
+  <div id="item4" class="item">
+    <h2>4F 数码</h2>
+    <ul>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <!-- 若干个li -->
+    </ul>
+  </div>
+  <div id="item5" class="item">
+    <h2>5F 母婴</h2>
+    <ul>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <li><a href="#"><img src="" alt=""/></a></li>
+      <!-- 若干个li -->
+    </ul>
+  </div>
+</div>
+</body>
+
+</html>
+

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="js/login.js"></script>
+  <script src="js/imgManager.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery-3.4.1.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>车型识别</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <script src="./layui/layui.js"></script>
+  <script src="layui/layui.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="//layui/css/layui.css" media="all">
+  <script>
+    window.onload = function () {
+      var username = window.sessionStorage.getItem('username');
+      if (username == null) {
+        document.getElementById('logined_item').style.visibility = "hidden";
+        document.getElementById('login_btn').style.visibility = "visible";
+        document.getElementById('logout_btn').style.visibility = "hidden";
+      } else {
+        document.getElementById('logined_item').style.visibility = "visible";
+        document.getElementById('login_btn').style.visibility = "hidden";
+        document.getElementById('logout_btn').style.visibility = "visible";
+        document.getElementById('username').innerHTML = '<img src="http://t.cn/RCzsdCq" class="layui-nav-img">' + window.sessionStorage.getItem('username');
+      }
+    }
+  </script>
+  <script type="text/javascript">
+  </script>
+</head>
+
+
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header" style="background-color: rgb(0,87,70)">
+    <div class="layui-logo"><a style="color: white">车辆识别系统</a></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item"><a id="logout_btn" style="visibility: hidden" onclick="
+          layer.confirm('真的要离开吗？', {icon: 3, title:'且慢'}, function(index){
+          //do something
+          window.sessionStorage.clear();
+          window.location.reload();
+          });">退出</a></li>
+      <li id="logined_item" class="layui-nav-item" style="visibility: hidden">
+        <a href="javascript:;" id="username">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          **
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="per_info.html">个人资料</a></dd>
+          <dd><a href="history.html">历史记录</a></dd>
+          <dd><a href="login.html">切换用户</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a id="login_btn" onclick="
+        window.sessionStorage.setItem('lastURL', window.location.href);
+        window.location.href = 'login.html';
+        ">登录</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-body" style="background-color: rgb(244,245,247)">
+    <!-- 内容主体区域 -->
+
+    <!--用于显示开头部分，图片叠加汉字的部分-->
+    <div class="layui.col.md12" style="height: 450px; width: 100%; background-image: 'img/carTeller_main.jpg'">
+      <img src="img/carInfo_main.jpg" style="width: 100%; height: 450px;zoom: 1;
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+    ),      ">
+      <div style="font-size: 70px;background-color: transparent;position: absolute;;top:20%; color: white; margin-left: 15%">车型识别</div>
+    </div>
+    <!--下半部分的主体区域-->
+    <div style="padding: 100px">
+      <!--功能介绍部分-->
+      <div class="layui-row">
+        <div class="layui-col-md2 layui-col-md-offset5">
+          <h1 align="center" style="font-size: 40px">功能介绍</h1>
+        </div>
+      </div>
+      <div class="layui-row" style="margin-top: 30px; height: 400px;  background-color: white">
+        <div style="padding: 20px;">
+          <div class="layui-row layui-col-space15">
+            <img class="layui-col-md6" src="img/car1.jpg" style="height: 350px;">
+            <div class="layui-col-md6">
+              <dic class="layui-card">
+                <div class="layui-card-header">
+                </div>
+                <div class="layui-card-body" style="font-size: 15px">
+                  本项目为武汉大学计算机学院软件工程系2017级暑期实训项目之车辆识别，
+                  本项目主要实现了车牌识别、车型识别、车辆属性识别、车辆检测功能，并在此基础上进行了拓展。最终的产品是网页端和移动端，通过HTTP协议与基于Flask框架搭建的服务器交互，服务器通过调用深度学习模块来进行汽车图像的分析与识别，并将分析结果返回给前端进行展示。<br>
+                </div>
+              </dic>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--功能演示-->
+      <div class="layui-row" style="margin-top: 100px">
+        <div class="layui-col-md2 layui-col-md-offset5">
+          <h1 align="center" style="font-size: 40px">功能演示</h1>
+        </div>
+      </div>
+      <div class="layui-row layui-col-space15" style="height: 400px; margin-top: 30px">
+        <div class="layui-col-md5">
+          <img id="forsee_pic" src="img/carTeller_temp.jpg" width="100%" height="400px">
+        </div>
+        <div class="layui-col-md7">
+          <div class="layui-card" style="height: 400px">
+            <div class="layui-card-header" style="font-size: 20px">演示窗口</div>
+            <div class="layui-card-body">
+              <div class="layui-row layui-col-space15">
+                <div class="layui-col-md5" style="margin-top: 50px">
+                  <div class="layui-upload-drag layui-col-md12" id="upload">
+                    <i class="layui-icon layui-icon-upload"></i>
+                    <p>点击上传，或将文件拖拽到此处</p>
+                  </div>
+                  <button id="upload_btn" type="button" style="margin-top: 40px"
+                          class="layui-btn layui-btn-radius layui-col-md8 layui-col-md-offset2">
+                    <i class="layui-icon">&#xe62f;</i> 提交
+                  </button>
+                </div>
+                <div class="layui-col-md7" style="margin-top: 20px">
+                  <fieldset class="layui-elem-field" style="height: 300px">
+                    <legend id="">识别结果</legend>
+                    <div class="layui-card-body">
+                      <p id="anw_text">请上传图片呢</p>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--应用场景部分-->
+      <div class="layui-row" style="margin-top: 100px">
+        <div class="layui-col-md2 layui-col-md-offset5">
+          <h1 align="center" style="font-size: 40px">应用场景</h1>
+        </div>
+      </div>
+      <div class="layui-row layui-col-space30" style="margin-top: 30px; height: 400px">
+        <div class="layui-col-md5 layui-col-md-offset1">
+          <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px">App</div>
+            <div class="layui-card-body">
+              <div class="layui-row">
+                <img style="height: 400px;" src="img/app.jpg" class="layui-col-md12">
+              </div>
+              <div class="layui-row">
+                <div class="layui-col-md10 layui-col-md-offset1">
+                  将该识别接口搭载在app作为相关的识别软件来进行使用。提供消费者识别车辆型号功能。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-col-md5 ">
+          <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px">车辆登记</div>
+            <div class="layui-card-body">
+              <div class="layui-row">
+                <img style="height: 400px;" src="img/intro.png" class="layui-col-md12 layui-anim layui-anim-scaleSpring">
+              </div>
+              <div class="layui-row">
+                <div class="layui-col-md10 layui-col-md-offset1">
+                  在停车场，车管所等场所搭载车辆型号识别功能，可以快速识别车辆型号完成登记效果。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--接口提供部分-->
+      <div class="layui-row" style="margin-top: 100px">
+        <div class="layui-col-md2 layui-col-md-offset5">
+          <h1 align="center" style="font-size: 40px">接口提供</h1>
+        </div>
+      </div>
+      <div class="layui-row" style="margin-top: 30px">
+        <div class="layui-card layui-col-md6 layui-col-md-offset3" style="height: 100%;">
+          <div class="layui-card-body">
+            <div class="layui-row" align="center">
+              <div class="layui-col-md8 layui-col-md-offset2">
+                <p>为用户准备了简单易用的接口，
+                  用户只需要根据接口文档即可方便快捷的使用上述功能。</p>
+              </div>
+            </div>
+            <div class="layui-row">
+              <div align="center" style="margin-top: 20px">
+                <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-lg"
+                        onclick="isLogin()">立即使用
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--用于跳转其他部分-->
+      <div class="layui-row" style="margin-top: 100px">
+        <div class="layui-col-md2 layui-col-md-offset5">
+          <h1 align="center" style="font-size: 40px">相关推荐</h1>
+        </div>
+      </div>
+      <div class="layui-row layui-col-space15" style="margin-top: 30px">
+        <div class="layui-col-md4 layui-col-md-offset2">
+          <a href="CarType.html">
+            <div class="layui-card" style="height: 150px">
+              <div class="layui-card-header" style="font-size: 25px;">车辆检测</div>
+              <div class="layui-card-body">
+                对图片中所有车辆位置进行标识并判断不同类型车辆的数量。
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="layui-col-md4">
+          <a href="CarBoard.html">
+            <div class="layui-card" style="height: 150px">
+              <div class="layui-card-header" style="font-size: 25px;">车牌识别</div>
+              <div class="layui-card-body">
+                对车辆车牌号进行识别并返回车牌号文本信息。
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="layui-row layui-col-space15" style="margin-top: 30px">
+        <div class="layui-col-md4 layui-col-md-offset2">
+          <a href="CarAttribute.html">
+            <div class="layui-card" style="height: 150px">
+              <div class="layui-card-header" style="font-size: 25px;">属性检测</div>
+              <div class="layui-card-body">
+                对图片主体的车辆属性进行检测，识别主副驾驶位上各种物体属性，以及车外配件等属性。
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="layui-col-md4">
+          <a href="DriverBehavior.html">
+            <div class="layui-card" style="height: 150px">
+              <div class="layui-card-header" style="font-size: 25px;">违规检测</div>
+              <div class="layui-card-body">
+                对图片中驾驶人员的动作进行分析，判断是否有驾驶禁止行为出现。
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © 深度学习不够深 - 嘀嘀嘀
+  </div>
+</div>
+
+
+<script>
+  function isLogin() {
+    $.ajax({
+      type: 'POST',
+      url: 'http://42.159.89.231:8000/isLogin',
+      async: false,//同步：意思是当有返回值以后才会进行后面的js程序。
+      data: {username: window.sessionStorage.getItem('username'), session: window.sessionStorage.getItem('session')},
+      datype: 'jsonp',
+      success: function (response) {
+        if (response.username == -1) {
+          layer.msg(response.msg, {icon: 2});
+          layer.tips('请点击这里登录', '#login_btn', {
+            tips: 3
+          });
+        } else {
+          window.location.href = 'API.html';
+        }
+      }
+      ,
+      error: function (e) {
+        //window.alert('服务器好像挂了呢555' + e.toString())
+        layer.msg('服务器好像挂了呢555', {icon: 5});
+      }
+    });
+  }
+
+
+  layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function () {
+
+    var $ = layui.jquery, upload = layui.upload;
+    //拖拽上传
+    var base64;
+
+    upload.render({
+      elem: '#upload'
+      , url: 'http://42.159.89.231:8000/carinfo'
+      , data: {
+        username: window.sessionStorage.getItem('username'),        //window.sessionStorage.getItem('username'),
+        image: function () {
+          return base64;
+        },
+      }
+      , auto: false
+      , bindAction: '#upload_btn'
+      , before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+        layer.load(2);   //上传loading
+      }
+      , choose: function (obj) {
+        //预读本地文件示例，不支持ie8
+        obj.preview(function (index, file, result) {
+          $('#forsee_pic').attr('src', result); //图片链接（base64）
+          console.log(result); //得到文件base64编码，比如图片
+          base64 = result;//得到BASE64
+        });
+      }
+      , done: function (res) {
+        layer.closeAll('loading');
+        if (res.username == -1) {
+          layer.msg(res.msg);
+        } else {
+          layer.msg("成功！");
+          var str = res.msg;
+          var obj = eval('(' + str + ')');
+          str = '';
+          str += '1. ' +  obj.carone.carname + '<br/>概率：' +  obj.carone.pro;
+          str += '<br/>2. ' +  obj.cartwo.carname + '<br/>概率：' +  obj.cartwo.pro;
+          str += '<br/>3. ' +  obj.carthree.carname + '<br/>概率：' +  obj.carthree.pro;
+          str += '<br/>4. ' +  obj.carfour.carname + '<br/>概率：' +  obj.carfour.pro;
+
+          document.getElementById('anw_text').innerHTML = str;
+        }
+      }
+      , error: function (e) {
+        layer.closeAll('loading');
+      }
+    });
+
+  });
+
+</script>
+</body>
+</html>

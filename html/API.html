@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="js/login.js"></script>
+  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+    /jquery-1.4.min.js"></script>
+  <script src="js/imgManager.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery-3.4.1.min.js"></script>
+  <meta charset="UTF-8">
+  <!--  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+  <title>接口文档</title>
+
+  <script src="./layui/layui.js"></script>
+  <script src="layui/layui.js" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+
+  <script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript">
+  </script>
+  <script>
+    window.onload = function () {
+      var username = window.sessionStorage.getItem('username');
+      if (username == null) {
+        window.location.href = 'login.html';
+      } else {
+        document.getElementById('logined_item').style.visibility = "visible";
+        document.getElementById('login_btn').style.visibility = "hidden";
+        document.getElementById('logout_btn').style.visibility = "visible";
+        document.getElementById('username').innerHTML = '<img src="http://t.cn/RCzsdCq" class="layui-nav-img">' + window.sessionStorage.getItem('username');
+      }
+    }
+  </script>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    #content {
+      width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    #content h1 {color: #59ff5c;}
+
+    #content .item {
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px dotted #0088bb;
+    }
+
+    #content .item h2 {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 2px solid #0088bb;
+      margin-bottom: 10px;
+    }
+
+    #content .item li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    #content .item li a img {
+      width: 230px;
+      height: 230px;
+      border: none;
+    }
+
+    #menu{
+      position:fixed;
+      right: 100px;
+      margin-left:400px;
+      top:200px;
+    }
+
+    #menu ul li a {
+      display: block;
+      margin: 5px 0;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      width: 80px;
+      height: 50px;
+      line-height: 50px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    #menu ul li a:hover, #menu ul li a.current {
+      color: #fff;
+      background: #14bb00;
+    }　
+  </style>
+
+
+</head>
+
+
+<body class="layui-layout-body">
+<!-- 左侧导航栏部分 -->
+
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header" style="background-color: rgb(0,87,70)">
+    <div class="layui-logo"><a style="color: white">车辆识别系统</a></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item"><a id="logout_btn" style="visibility: hidden" onclick="
+          layer.confirm('真的要离开吗？', {icon: 3, title:'且慢'}, function(index){
+          //do something
+          window.sessionStorage.clear();
+          window.location.reload();
+          });">退出</a></li>
+      <li id="logined_item" class="layui-nav-item" style="visibility: hidden">
+        <a href="javascript:;" id="username">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          **
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="per_info.html">个人资料</a></dd>
+          <dd><a href="history.html">历史记录</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a id="login_btn" onclick="
+        window.sessionStorage.setItem('lastURL', window.location.href);
+        window.location.href = 'login.html';
+        ">登录</a></li>
+    </ul>
+  </div>
+  <div class="layui-body">
+    <div id="menu">
+      <ul>
+        <li><a href="#jj">简介</a></li>
+        <li><a href="#jk">接口能力</a></li>
+        <li><a href="#qq">请求格式</a></li>
+        <li><a href="#fh">返回格式</a></li>
+        <li><a href="#dm">代码示例</a></li>
+      </ul>
+    </div>
+
+
+    <!-- 内容主体区域 -->
+    <div class="layui-col-md12">
+      <p class="content2" style="font-size: 32px; font-family: Monospace ; margin-top: 2%;margin-left: 2%;"><b>接口文档</b></p>
+      <hr class="layui-bg-black"  style="margin-top: 1%;margin-left: 2%;margin-right: 2%"/>
+    </div>
+    <div style="padding: 200px;">
+      <fieldset class="layui-elem-field" style="margin-top: 50px">
+        <legend id="jj"; align="center" style="font-size: 25px">简介</legend>
+Hi，您好，欢迎使用车必识汽车识别API服务。<br><br>
+本文档主要针对API开发者，描述车必识汽车识别接口服务的相关技术内容。<br><br>
+如果您对文档内容有任何疑问，可以通过以下几种方式联系我们：<br><br>
+    QQ:1433119499<br><br>
+		
+      </fieldset>
+      <br/><br/>
+
+      <fieldset class="layui-elem-field layui-field-title" align ="center" style="margin-top: 50px;">
+        <legend id ="jk" style="font-size: 25px">接口能力</legend>
+      </fieldset>
+
+      </br><p style="margin-left: 2%">车辆识别接口一览表</p>
+      <div class="layui-form" style="margin-top: 50px;">
+
+
+        <table class="layui-table" lay-skin="row" lay-size="lg">
+          <colgroup>
+            <col width="150">
+            <col width="200">
+          </colgroup>
+          <thead>
+          <tr>
+            <th>接口名称</th>
+            <th>接口能力描述</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>车牌识别</td>
+            <td>识别图像中汽车车牌，返回车牌的具体内容</td>
+          </tr>
+          <tr>
+            <td>车型识别</td>
+            <td>识别图像中汽车车型，返回汽车的品牌，年份，型号等信息，包括宝马，奥迪等196种车型</td>
+          </tr>
+          <tr>
+            <td>车辆检测</td>
+            <td>识别图像中汽车种类，返回带有具体位置、种类标注的图片和各种车的数量</td>
+          </tr>
+          <tr>
+            <td>属性检测</td>
+            <td>识别图像中汽车的属性，包括是否有车顶架，副驾驶是否有人等属性</td>
+          </tr>
+          <tr>
+            <td>违规检测</td>
+            <td>识别图像中驾驶员的违规行为，包括开车饮水，使用手机，播打电话等9种行为</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+      <fieldset class="layui-elem-field" style="margin-top: 150px;">
+        <legend style="font-size: 25px" id = "qq" align="center">请求格式</legend>
+        <br/>
+        <p b style="margin-left: 2%;font-size: 15px" >POST方式调用</b></p>
+        <br/><br/>
+        <p style="margin-left: 2%;font-size: 15px" >注意：请求体需要包含Base64格式的图片，用户名和对应的key_token密钥。</p>
+        <br/><br/><br/>
+      </fieldset>
+      <br/><br/>
+
+      <fieldset class="layui-elem-field" style="margin-top: 150px;">
+        <legend id="fh" style="font-size: 25px" align="center">返回格式</legend>
+        <br/>
+        <p style="margin-left: 2%;font-size: 15px" > JSON格式</p>
+        <br/>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-md6">
+            <pre class="layui-code" lay-height="200px" style="background-color: transparent" lay-title = 车牌识别 >
+# 返回json格式举例：
+# username 为-1代表失败
+
+{
+    "msg":渝Q521MZ,
+    "username":"xx"
+}
+        </pre>
+          </div>
+          <div class="layui-col-md6">
+            <pre class="layui-code" lay-height="200px" style="background-color: transparent" lay-title = 车辆检测 >
+# 返回json格式举例：
+# username 为-1代表失败
+
+{
+    "username":"xx"
+    "msg":
+        {
+            "car_count": 0, 
+            "bus_count": 1, 
+            "motorcycle_count": 0, 
+            "bicycle_count": 0, 
+            "truck_count": 0
+        },
+    ”img":定位汽车后返回的图片Base64编码
+}
+        </pre>
+          </div>
+        </div>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-md6">
+            <pre class="layui-code" lay-height="200px" style="background-color: transparent" lay-title = 车型识别 >
+# 返回json格式举例：
+# carname:汽车型号名称和年份，pro:概率
+# username 为-1代表失败
+
+{
+  "msg":
+    {
+      "carone": 
+        {
+          "carname": "CarA’s Name(中文名)",    					
+          "pro": 0.2748713493347168
+        }
+      "cartwo": 
+        {
+          "carname": "CarA’s Name(中文名)",    					
+          "pro": 0.09646578133106232
+        }
+      "carthree": 
+        {
+          "carname": "CarA’s Name(中文名)",    					
+          "pro": 0.2748713493347168
+        }
+      "carfour": 
+        {
+          "carname": "CarA’s Name(中文名)",    					
+          "pro": 0.03699835389852524
+        }
+      "carfive": 
+        {
+          "carname": "CarA’s Name(中文名)",    					
+          "pro": 0.036258772015571594
+        }	
+    }
+  "username":"xx"								
+}
+        </pre>
+          </div>
+          <div class="layui-col-md6">
+            <pre class="layui-code" lay-height="200px" style="background-color: transparent" lay-title = 违规检测 >
+# 返回json格式举例：
+# behavior:驾驶员行为，pros:概率
+# username 为-1代表失败
+
+{	
+    "msg":
+        {
+            "behavior":使用手机 - 左手,
+            "pros":0.9998896
+        }
+    "username":"xx"
+}
+
+        </pre>
+          </div>
+        </div>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-md6 layui-col-md-offset3">
+            <pre class="layui-code" lay-height="200px" style="background-color: transparent" lay-title = 属性识别 >
+# 返回json格式举例：
+# 	未检测到任何车辆：
+    {
+        "vehicle_num": 0,
+        "vehicle_info":
+        [
+            {
+                "location":
+                {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                    "score"： 0
+                 }
+                "attributes":
+                {
+                }
+            }
+        ]
+    }
+# 	测到2两车辆：
+    {
+         "vehicle_num": 2,
+         "vehicle_info":
+         [
+            {
+                "location":
+                {
+                    "left": 100,
+                    "top": 200,
+                    "width": 200,
+                    "height": 400
+                }
+                "attributes":
+                {
+                    "vehicle_type":
+                    {
+                        "name": "小汽车",
+                        "score": 0.852
+                    }
+                     "window_rain_eyebrow":
+                    {
+                        "score": 0.937
+                    }
+                    "roof_rack":
+                    {
+                        "score": 0.889
+                    }
+                    "skylight":
+                    {
+                        "score": 0.925
+                    }
+                    "in_car_item":
+                    {
+                        "score": 0.774
+                    }
+                    "rearview_item":
+                    {
+                        "score": 0.774
+                    }
+                    "copilot":
+                    {
+                        "score": 0.711
+                    }
+                    "driver_belt":
+                    {
+                        "score": 0.633
+                    }
+                    "copilot_belt":
+                    {
+                        "score": 0.721
+                    }
+                    "driver_visor":
+                    {
+                        "score": 0.455
+                    }
+                    "copilot_visor":
+                    {
+                        "score": 0.455
+                    }
+                    "direction":
+                    {
+                        "name": "正前方",
+                        "score": 0.455
+                    }
+                }
+            }
+            {
+                "location":
+                {
+                    "left": 400,
+                    "top": 200,
+                    "width": 200,
+                    "height": 400
+                }
+                "attributes":
+                {
+                    "vehicle_type":
+                    {
+                        "name": "小汽车",
+                        "score": 0.921
+                    }
+                    "window_rain_eyebrow":
+                    {
+                        "score": 0.918
+                    }
+                    "roof_rack":
+                    {
+                        "score": 0.850
+                    }
+                    "skylight":
+                    {
+                        "score": 0.714
+                    }
+                    "in_car_item":
+                    {
+                        "score": 0.787
+                    }
+                    "rearview_item":
+                    {
+                        "score": 0.787
+                    }
+                    "copilot":
+                    {
+                        "score": 0.711
+                    }
+                    "driver_belt":
+                    {
+                        "score": 0.633
+                    }
+                    "copilot_belt":
+                    {
+                        "score": 0.721
+                    }
+                    "driver_visor":
+                    {
+                        "score": 0.455
+                    }
+                    "copilot_visor":
+                    {
+                        "score": 0.455
+                    }
+                    "direction":
+                    {
+                        "name": "右前方",
+                        "score": 0.455
+                    }
+                }
+             }
+         ]
+    }
+
+
+
+        </pre>
+          </div>
+
+        </div>
+      </fieldset>
+      <br/><br/>
+
+      <fieldset class="layui-elem-field layui-field-title" align ="center" style="margin-top: 50px;">
+        <legend id="dm" style="font-size: 25px" >代码示例</legend>
+      </fieldset>
+
+      <pre class="layui-code" style="height: 300px; ;background-color: transparent" lay-title = Python >
+import requests
+import base64
+
+"""
+    key_token:为每个账号创建后唯一赋予的密钥
+"""
+# 打开图片
+f = open("test.jpg","rb")
+image = base64.b64encode(f.read())
+
+# 车牌识别
+url = "http://42.159.89.231:8000/api/carboard"
+# 车型识别
+url = "http://42.159.89.231:8000/api/carinfo"
+# 车辆检测
+url = "http://42.159.89.231:8000/api/cartypemore"
+# 属性检测
+url = "http://42.159.89.231:8000/api/carattribute"
+# 违规检测
+url = "http://42.159.89.231:8000/api/driverBehavior"
+
+
+data = {"image":image,
+        "username":"xx",
+        "key_token":"*****"
+        }
+		
+# post请求
+response = requests.post(url=url,data=data)
+print(response.text)
+
+      </pre>
+    </div>
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © 深度学习不够深 - 嘀嘀嘀
+  </div>
+</div>
+
+
+<script>
+
+
+  layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'code'], function () {
+
+    layui.code({
+      about: false
+    });
+
+    var $ = layui.jquery, upload = layui.upload;
+    //拖拽上传
+    upload.render({});
+    upload.render({
+      elem: '#upload1'
+      , url: '/upload/'
+      , auto: false
+      , bindAction: '#upload_btn1'
+      , choose: function (obj) {
+        //预读本地文件示例，不支持ie8
+        obj.preview(function (index, file, result) {
+          $('#forsee_pic1').attr('src', result); //图片链接（base64）
+        });
+      }
+      , done: function (res) {
+        window.alert(res);
+      }
+    });
+
+
+  });
+
+</script>
+</body>
+</html>
