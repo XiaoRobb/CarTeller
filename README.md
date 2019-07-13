@@ -50,3 +50,13 @@ CarTeller文件夹内容：
       属性检测（CarAttribute）：调用百度API
 
 【我们是一个团队，中间避免不了相互协作、帮助，共同调试BUG，所以各个板块除了主要作者外，还有团队其他人员提供的各种支持，比如最终一起调试，一起寻找数据集，一起为前端界面提出自己的想法等等】
+
+
+需要搭配的环境
+
+1. pytorch 1.0.1版本 torchvision 0.2.2版本
+2. imageai 库
+3. keras tensorflow框架
+4. effecient-net
+5. opencv
+6. 如果要运行训练，需要安装cuda
