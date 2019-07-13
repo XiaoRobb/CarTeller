@@ -17,7 +17,7 @@ html文件夹内内容：
 
      主要作者：王崎璇（xxxxx)
      
-     次要作者：陈嘉(xxxxx)
+     协作者：陈嘉(登录界面，API界面及部分调整)
      
 CarTeller文件夹内容：
 
@@ -36,7 +36,7 @@ CarTeller文件夹内容：
              数据集：自己制作寻找
              网络：VGG16
       
-      车型识别（CarInfoTeller）：识别汽车品牌： 主要作责：周宏俊
+      车型识别（CarInfoTeller）：识别汽车品牌： 主要作者：周宏俊
              数据集：Stanford Cars 196种常见汽车车型和其年份品牌信息
              网络：ResNet152
      
