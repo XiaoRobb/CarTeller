@@ -23,9 +23,10 @@ html文件夹内内容：
      
 CarTeller文件夹内容：
 
-      服务器端：app文件内内容
-              主要作者：高晓凯 （xxxx)
-      
+      服务器端：
+      flask文件内内容,主要作者：高晓凯 （flask+gunicorn)
+      服务器环境配置和项目部署,主要作者：高晓凯(centos7+flask+gunicorn+mysql,apache)
+         主要配置centos7环境，部署flask项目和html项目，与前端配合调试，将模型整合到flask项目中并调试
       后台深度学习用于汽车识别代码：
       
       车牌识别（CarBoardTeller): 主要作者 ： 陈嘉
@@ -34,7 +35,7 @@ CarTeller文件夹内容：
       车辆检测（CarTypeTellerMore):多车检测类型并统计各种车数量 ：主要作者：陈嘉
               重要库：ImageAI
       
-      车辆检测（CarTypeTellerOne):单次分类检测： 主要作者：周宏俊
+      车辆检测（CarTypeTellerOne):单车分类检测： 主要作者：周宏俊
              数据集：自己制作寻找
              网络：VGG16
       
