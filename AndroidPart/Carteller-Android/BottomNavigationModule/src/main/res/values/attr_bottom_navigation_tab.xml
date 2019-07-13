@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="bottomNav">
+        <attr name="navGrowTabs" format="reference|boolean"/>
+        <attr name="navGrowthModifier" format="reference|dimension"/>
+        <attr name="navShowCircleReveal" format="reference|boolean"/>
+        <attr name="navInitiallySelectedChild" format="reference|integer"/>
+        <attr name="navExpandAnimationTime" format="reference|integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="bottomTab">
+        <attr name="tabImage" format="reference"/>
+        <attr name="tabText" format="reference|string"/>
+        <attr name="tabColor" format="reference|color"/>
+        <attr name="textColor" format="reference|color"/>
+        <attr name="alwaysShowText" format="reference|boolean"/>
+        <attr name="unselectedAlpha" format="reference|float"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string-array name="type">
+        <item>车牌识别</item>
+        <item>车型识别</item>
+        <item>多车检测</item>
+        <item>属性识别</item>
+        <item>违规检测</item>
+    </string-array>
+</resources>
