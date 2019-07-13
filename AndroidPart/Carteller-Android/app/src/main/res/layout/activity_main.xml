@@ -15,12 +15,21 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:scaleType="centerCrop"
             android:src="@drawable/good_morning_img" />
 
     </FrameLayout>
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/calibri"
+        android:text="车必识\n车辆识别系统"
+        android:textAlignment="center"
+        android:textColor="#96ffffff"
+        android:textSize="30sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -57,7 +66,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/gotham"
-                android:text="UP"
+                android:text="IN"
                 android:textColor="#ffffff"
                 android:textSize="32sp" />
 
@@ -174,15 +183,6 @@
         </LinearLayout>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/calibri"
-            android:text="Forgot Password?"
-            android:textAlignment="center"
-            android:textColor="#96ffffff"
-            android:textSize="16sp" />
 
 
     </LinearLayout>
