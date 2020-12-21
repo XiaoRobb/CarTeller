@@ -15,41 +15,41 @@ CarInfoTeller文件夹内容：拥有车型识别的训练代码内容（CarTell
 
 html文件夹内内容：
 
-     主要作者：王崎璇
+     主要作者：wqx
           五个功能界面，个人信息界面，历史界面以及其功能。接口文档微调。
           登录功能，滑块检测功能，界面弹窗效果。
-     协作者：陈嘉+
+     协作者：cj
           登录界面，API界面及部分调整
 		 
 AndroidPart文件夹内容:
 
-	作者：陈俊杰
+	作者：cjj
 		登录、注册界面，tab滑动切换Fragments，从手机存储读取照片，基于okHttp框架的以Json为载体的数据传输和解析逻辑
 		，通过http协议与服务器交互进行几种车辆识别。
      
 CarTeller文件夹内容：
 
       服务器端：
-      flask文件内内容,主要作者：高晓凯 （flask+gunicorn)
-      服务器环境配置和项目部署,主要作者：高晓凯(centos7+flask+gunicorn+mysql,apache)
+      flask文件内内容,主要作者：gxk （flask+gunicorn)
+      服务器环境配置和项目部署,主要作者：gxk(centos7+flask+gunicorn+mysql,apache)
          主要配置centos7环境，部署flask项目和html项目，与前端配合调试，将模型整合到flask项目中并调试
       后台深度学习用于汽车识别代码：
       
-      车牌识别（CarBoardTeller): 主要作者 ： 陈嘉
+      车牌识别（CarBoardTeller): 主要作者 ： cj
               技术：OpenCV + SVM
       
-      车辆检测（CarTypeTellerMore):多车检测类型并统计各种车数量 ：主要作者：陈嘉
+      车辆检测（CarTypeTellerMore):多车检测类型并统计各种车数量 ：主要作者：cj
               重要库：ImageAI
       
-      车辆检测（CarTypeTellerOne):单车分类检测： 主要作者：周宏俊
+      车辆检测（CarTypeTellerOne):单车分类检测： 主要作者：zhj
              数据集：自己制作寻找
              网络：VGG16
       
-      车型识别（CarInfoTeller）：识别汽车品牌： 主要作者：周宏俊
+      车型识别（CarInfoTeller）：识别汽车品牌： 主要作者：zhj
              数据集：Stanford Cars 196种常见汽车车型和其年份品牌信息
              网络：ResNet152
      
-      驾驶员行为检测（DriverBehavior）：识别驾驶员在车上的各种违规行为（9种，如使用手机等） 主要作者： 周宏俊
+      驾驶员行为检测（DriverBehavior）：识别驾驶员在车上的各种违规行为（9种，如使用手机等） 主要作者： zhj
              数据集：Kaggle的State Farm Distracted Driver Detection
              网络：ResNet152
       
